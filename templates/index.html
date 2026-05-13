@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PAGE_TITLE}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">🏪 {{PROJECT_NAME}}</div>
+            <div class="search-box">
+                <input type="text" placeholder="搜索商品..." id="searchInput">
+                <button>🔍</button>
+            </div>
+            <div class="header-actions">
+                <span class="cart-icon" onclick="location.href='cart.html'">🛒 <span class="badge">3</span></span>
+                <span class="user-icon" onclick="location.href='user.html'">👤</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主导航 -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="active"><a href="index.html">首页</a></li>
+                <li><a href="category.html">全部分类</a></li>
+                <li><a href="product-list.html">商品列表</a></li>
+                <li><a href="cart.html">购物车</a></li>
+                <li><a href="user.html">我的</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Banner 轮播 -->
+    <section class="banner">
+        <div class="banner-slider" id="bannerSlider">
+            {{BANNER_ITEMS}}
+        </div>
+        <div class="banner-indicators">
+            {{BANNER_INDICATORS}}
+        </div>
+    </section>
+
+    <!-- 快捷入口 -->
+    <section class="quick-entry">
+        <div class="container">
+            <div class="quick-grid">
+                {{QUICK_ENTRIES}}
+            </div>
+        </div>
+    </section>
+
+    <!-- 限时秒杀 -->
+    <section class="seckill">
+        <div class="container">
+            <div class="section-header">
+                <h2>⚡ 限时秒杀</h2>
+                <div class="countdown" id="seckillCountdown">
+                    <span>距离结束</span>
+                    <span class="time">02</span>:
+                    <span class="time">30</span>:
+                    <span class="time">45</span>
+                </div>
+                <a href="#" class="more">更多 ></a>
+            </div>
+            <div class="seckill-products">
+                {{SECKILL_PRODUCTS}}
+            </div>
+        </div>
+    </section>
+
+    <!-- 推荐商品 -->
+    <section class="recommend">
+        <div class="container">
+            <div class="section-header">
+                <h2>🔥 热门推荐</h2>
+                <a href="product-list.html" class="more">更多 ></a>
+            </div>
+            <div class="product-grid">
+                {{RECOMMEND_PRODUCTS}}
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部信息 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                {{FOOTER_LINKS}}
+            </div>
+            <div class="copyright">
+                © 2024 {{PROJECT_NAME}} 版权所有
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

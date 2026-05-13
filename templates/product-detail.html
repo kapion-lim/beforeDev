@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PRODUCT_NAME}} - {{PROJECT_NAME}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header header-fixed">
+        <div class="container header-content">
+            <a href="javascript:history.back()" class="back-btn">←</a>
+            <div class="header-title" id="headerTitle">商品详情</div>
+            <div class="header-actions">
+                <span>📤 分享</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 商品轮播图 -->
+    <section class="product-gallery">
+        <div class="gallery-slider" id="gallerySlider">
+            {{GALLERY_ITEMS}}
+        </div>
+        <div class="gallery-indicators">
+            {{GALLERY_INDICATORS}}
+        </div>
+    </section>
+
+    <!-- 商品信息 -->
+    <section class="product-info">
+        <div class="container">
+            <div class="product-price">
+                <span class="current-price">¥{{CURRENT_PRICE}}</span>
+                <span class="original-price">¥{{ORIGINAL_PRICE}}</span>
+                {{DISCOUNT_TAG}}
+            </div>
+            <h1 class="product-title">{{PRODUCT_NAME}}</h1>
+            <div class="product-meta">
+                <span>已售 {{SOLD_COUNT}} 件</span>
+                <span>好评率 {{GOOD_RATE }}%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 促销信息 -->
+    <section class="promotion-info">
+        <div class="container">
+            <div class="promotion-item" onclick="showCouponModal()">
+                <span class="label">促销</span>
+                <span class="value">满199减20</span>
+                <span class="arrow">领取优惠券 ></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 规格选择 -->
+    <section class="sku-section" onclick="showSkuModal()">
+        <div class="container">
+            <div class="sku-selector">
+                <span class="label">选择</span>
+                <span class="value">{{SELECTED_SKU}}</span>
+                <span class="arrow">请选择颜色、尺码 ></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 商品详情Tab -->
+    <section class="product-tabs">
+        <div class="container">
+            <div class="tab-nav">
+                <span class="tab-item active" onclick="switchTab('detail')">商品详情</span>
+                <span class="tab-item" onclick="switchTab('params')">规格参数</span>
+                <span class="tab-item" onclick="switchTab('reviews')">评价 ({{REVIEW_COUNT}})</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 商品详情内容 -->
+    <section class="product-detail" id="productDetail">
+        <div class="container">
+            {{PRODUCT_DETAIL_CONTENT}}
+        </div>
+    </section>
+
+    <!-- 底部操作栏 -->
+    <section class="bottom-actions">
+        <div class="action-icons">
+            <div class="action-item">
+                <span>💬</span>
+                <span>客服</span>
+            </div>
+            <div class="action-item" onclick="location.href='shop.html'">
+                <span>🏪</span>
+                <span>店铺</span>
+            </div>
+            <div class="action-item" id="favoriteBtn" onclick="toggleFavorite()">
+                <span>⭐</span>
+                <span>收藏</span>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <button class="btn-add-cart" onclick="addToCart()">加入购物车</button>
+            <button class="btn-buy-now" onclick="buyNow()">立即购买</button>
+        </div>
+    </section>
+
+    <!-- SKU 选择弹窗 -->
+    <div class="modal" id="skuModal">
+        <div class="modal-mask" onclick="closeSkuModal()"></div>
+        <div class="modal-content sku-modal">
+            <div class="sku-header">
+                <img src="{{SKU_IMAGE}}" alt="" class="sku-product-img">
+                <div class="sku-info">
+                    <div class="sku-price">¥{{CURRENT_PRICE}}</div>
+                    <div class="sku-stock">库存: {{STOCK}} 件</div>
+                </div>
+                <span class="sku-close" onclick="closeSkuModal()">✕</span>
+            </div>
+            <div class="sku-body">
+                {{SKU_OPTIONS}}
+            </div>
+            <div class="sku-footer">
+                <div class="quantity-selector">
+                    <span>购买数量</span>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="decreaseQty()">-</button>
+                        <input type="number" id="quantityInput" value="1" min="1" max="{{STOCK}}">
+                        <button class="qty-btn" onclick="increaseQty()">+</button>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-confirm" onclick="confirmSku()">确定</button>
+        </div>
+    </div>
+
+    <!-- 优惠券弹窗 -->
+    <div class="modal" id="couponModal">
+        <div class="modal-mask" onclick="closeCouponModal()"></div>
+        <div class="modal-content coupon-modal">
+            <div class="modal-header">领取优惠券</div>
+            <div class="coupon-list">
+                {{COUPON_LIST}}
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initPage();
+        });
+    </script>
+</body>
+</html>
